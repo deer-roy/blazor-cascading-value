@@ -1,0 +1,11 @@
+
+<h2>Age Editor</h2>
+<hr/>
+<span>Age:</span>
+<input type="number" @bind-Value="Age" @bind-Value:event="oninput" />
+
+<h2>@(Age)</h2>
+
+@code {
+    private int Age {get; set;}
+}

@@ -1,0 +1,27 @@
+﻿@page "/counter/edit"
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter Change</h1>
+
+<input type="number" @bind="counterValue"/>
+<button class="btn btn-primary" @onclick="HandleUpdate">Update</button>
+
+@code {
+
+    [CascadingParameter]
+    public App MainApp {get; set;} = null!;
+
+    private int counterValue {get; set;}
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        counterValue = MainApp.Counter;
+    }
+
+    private void HandleUpdate()
+    {
+        MainApp.SetCounter(counterValue);
+    }
+}

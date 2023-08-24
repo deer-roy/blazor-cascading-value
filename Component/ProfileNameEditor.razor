@@ -1,0 +1,11 @@
+<h2>Name Editor</h2>
+<hr/>
+<span>Name:</span>
+<input placeholder="Name" type="text" @bind-Value="Name" @bind-Value:event="oninput" />
+
+<h2>@(Name)</h2>
+
+@code {
+
+    private string Name {get; set;}
+}
