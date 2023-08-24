@@ -1,11 +1,22 @@
-<h2>Name Editor</h2>
-<hr/>
 <span>Name:</span>
-<input placeholder="Name" type="text" @bind-Value="Name" @bind-Value:event="oninput" />
 
-<h2>@(Name)</h2>
+<input placeholder="Name" type="text"
+    value="@(Name)"
+    @oninput="HandleNameChanged"
+ />
 
 @code {
 
-    private string Name {get; set;}
+    [EditorRequired]
+    [Parameter]
+    public string Name {get; set;} = null!;
+
+    [Parameter]
+    public EventCallback<string> NameChanged {get; set;}
+
+
+    private async Task HandleNameChanged(ChangeEventArgs e)
+    {
+        await NameChanged.InvokeAsync(e.Value?.ToString() ?? "");
+    }
 }

@@ -1,16 +1,27 @@
 
-<ProfileNameEditor />
-<ProfileAgeEditor />
+<div style="border: 1px solid grey; padding: 20px;">
+        
+    <h2>Profile Editor</h2><br/><br/>
+    <ProfileNameEditor @bind-Name="@(Name)"/><br><br>
+    <ProfileAgeEditor @bind-Age="@(Age)" /><br><br>
 
-<button>Save</button>
+    <button @onclick="HandleSave">Save</button>
+</div>
+
 @code {
 
 
-    @* private string Name {get; set;} *@
+    [CascadingParameter]
+    public StateYourProblem.Pages.Index IndexComponent {get; set;} = null!;
+
+    private string Name {get; set;} = "";
+
+    private int Age {get; set;}
 
     void HandleSave() {
-        //name
-        // age
-
+        Console.WriteLine(Name);
+        Console.WriteLine(Age);
+        IndexComponent.SetAge(Age);
+        IndexComponent.SetName(Name);
     }
 }

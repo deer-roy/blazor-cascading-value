@@ -1,0 +1,8 @@
+<br><br>
+<h2>Hello @(IndexComponent.Name) you are still @(IndexComponent.Age) years old.</h2>
+
+@code {
+
+    [CascadingParameter]
+    public StateYourProblem.Pages.Index IndexComponent {get; set;} = null!;
+}

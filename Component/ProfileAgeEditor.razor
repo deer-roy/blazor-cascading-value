@@ -1,11 +1,24 @@
-
-<h2>Age Editor</h2>
-<hr/>
 <span>Age:</span>
-<input type="number" @bind-Value="Age" @bind-Value:event="oninput" />
 
-<h2>@(Age)</h2>
+<input placeholder="Age" type="number"
+    value="@(Age)"
+    @oninput="HandleAgeChanged"
+ />
+
 
 @code {
-    private int Age {get; set;}
+
+    [EditorRequired]
+    [Parameter]
+    public int Age {get; set;}
+
+    [Parameter]
+    public EventCallback<int> AgeChanged {get; set;}
+
+
+    private async Task HandleAgeChanged(ChangeEventArgs e)
+    {
+        var v = Int32.Parse((e.Value?.ToString() ?? "0"));
+        await AgeChanged.InvokeAsync(v);
+    }
 }

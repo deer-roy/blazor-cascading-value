@@ -1,9 +1,23 @@
 ﻿@page "/"
 
-<div style="border: 1px solid grey; padding: 20px;">
-        
-    <h2>Profile Editor</h2><br/><br/>
-    <ProfileEditor /> 
 
-</div>
+<CascadingValue Value="this">
+    <ProfileEditor /> 
+    <ProfileViewer />
+</CascadingValue>
+
+@code {
+    public string Name {get; private set;} = "";
+    public int Age {get; private set;}
+
+    public void SetName(string value){
+        Name = value;
+        StateHasChanged();
+    }
+
+    public void SetAge(int value) {
+        Age = value;
+        StateHasChanged();
+    }
+}
 
